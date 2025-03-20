@@ -1,0 +1,30 @@
+{
+  "name": "sistema_de_ventas_de_restaurante",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennisbkd/sistema_de_ventas_de_restaurante.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennisbkd/sistema_de_ventas_de_restaurante/issues"
+  },
+  "homepage": "https://github.com/dennisbkd/sistema_de_ventas_de_restaurante#readme",
+  "description": "",
+  "devDependencies": {
+    "standard": "17.1.2"
+  },
+  "dependencies": {
+    "express": "4.21.2"
+  },
+  "eslintConfig": {
+    "extends":"standard"
+  }
+}
