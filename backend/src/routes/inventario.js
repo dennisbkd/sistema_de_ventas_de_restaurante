@@ -1,8 +1,10 @@
 import { Router } from 'express'
-import { InventarioController } from '../controllers/inventario'
+import { InventarioController } from '../controllers/inventario.js'
 
-const pedidosRouter = Router()
+export const CreateInventarioRouter = ({ inventarioModel }) => {
+  const inventarioRouter = Router()
+  const inventarioController = new InventarioController({ inventarioModel })
 
-pedidosRouter.get('/', InventarioController.getAll)
-
-pedidosRouter.get('/', InventarioController.getById)
+  inventarioRouter.get('/', inventarioController.getAll)
+  return inventarioRouter
+}
