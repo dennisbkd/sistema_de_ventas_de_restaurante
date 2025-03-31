@@ -6,5 +6,6 @@ export const CreateInventarioRouter = ({ inventarioModel }) => {
   const inventarioController = new InventarioController({ inventarioModel })
 
   inventarioRouter.get('/', inventarioController.getAll)
+  inventarioRouter.get('/:id', inventarioController.getById)
   return inventarioRouter
 }

@@ -1,2 +1,27 @@
 #####
 GET http://localhost:3000/inventario
+
+###$ 
+GET http://localhost:3000/inventario/1
+
+
+##### router PEDIDOS
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+    "ClienteID": 1,
+    "MeseroID":1, 
+    "CocineroID":3,
+    "Fecha":"2023-05-01",
+    "Hora":"22:15:00",
+    "Estado":"Listo"
+}
+
+### 
+PATCH  http://localhost:3000/pedidos/10
+Content-Type: application/json
+
+{
+    "Estado":"Cancelado"
+}
