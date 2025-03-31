@@ -2,7 +2,11 @@ import { DataTypes } from 'sequelize'
 import db from '../config/db/db.js'
 
 export const pedidosColumns = {
-
+  ID: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   ClienteID: {
     type: DataTypes.INTEGER,
     allowNull: false
@@ -49,5 +53,35 @@ export const detallePedidosColumns = {
   Precio: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false
+  }
+}
+/*
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Precio DECIMAL(10,2) NOT NULL,
+    Stock INT NOT NULL,
+    Descripcion TEXT,
+    CategoriaID INT,
+*/
+export const productoColums = {
+  Nombre: {
+    type: DataTypes.STRING(100),
+    allowNull: false
+  },
+  Precio: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false
+  },
+  Stock: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  Descripcion: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  },
+  CategoriaID: {
+    type: DataTypes.INTEGER,
+    allowNull: true
   }
 }

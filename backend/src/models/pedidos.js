@@ -1,19 +1,33 @@
 /* eslint-disable camelcase */
 import db from '../config/db/db.js'
-import { pedidosColumns, detallePedidosColumns } from '../services/pedidos.js'
+import { pedidosColumns, detallePedidosColumns, productoColums } from '../services/pedidos.js'
 
 export class PedidosModel {
   static Pedido = db.define('Pedido', pedidosColumns, {
     timestamps: false,
-    freezeTableName: true // Habilita createdAt y updatedAt automáticamente
+    freezeTableName: true
   })
 
   static detallePedido = db.define('DetallePedido', detallePedidosColumns, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true
+  })
+
+  static Producto = db.define('Producto', productoColums, {
+    timestamps: false,
+    freezeTableName: true
   })
 
   static async create ({ input }) {
-    console.log(input)
+    this.Pedido.belongsToMany(this.Producto, {
+      through: 'DetallePedido',
+      foreignKey: 'PedidoID'
+    })
+    this.Producto.belongsToMany(this.Pedido, {
+      through: 'DetallePedido',
+      foreignKey: 'ProductoID'
+    })
+
     const {
       ClienteID,
       MeseroID,
@@ -21,7 +35,8 @@ export class PedidosModel {
       Fecha,
       Hora,
       Estado,
-      Reserva
+      Reserva,
+      Productos
     } = input
     try {
       const nuevoPedido = await this.Pedido.create({
@@ -33,7 +48,22 @@ export class PedidosModel {
         Estado,
         Reserva
       })
-      return nuevoPedido
+      for (const producto of Productos) {
+        await nuevoPedido.addProducto(producto.ProductoID, {
+          through: {
+            Cantidad: producto.Cantidad,
+            Precio: producto.Precio
+          }
+        })
+      }
+      console.log(nuevoPedido.ID)
+      const resultado = await this.Pedido.findByPk(nuevoPedido.ID, {
+        include: this.Producto,
+        through: {
+          attributes: ['Cantidad', 'Precio']
+        }
+      })
+      return resultado
     } catch (error) {
       throw new Error(`Error al crear un nuevo pedido: ${error}`)
     }

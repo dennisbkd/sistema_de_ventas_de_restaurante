@@ -14,8 +14,13 @@ Content-Type: application/json
     "MeseroID":1, 
     "CocineroID":3,
     "Fecha":"2023-05-01",
-    "Hora":"22:15:00",
-    "Estado":"Listo"
+    "Hora":"18:12:00",
+    "Estado":"Pendiente",
+    "Productos": [
+    { "ProductoID": 6, "Cantidad": 2, "Precio": 10.99 },
+    { "ProductoID": 7, "Cantidad": 1, "Precio": 15.50 },
+    { "ProductoID": 8, "Cantidad": 4, "Precio": 8.75 }
+    ]
 }
 
 ### 
