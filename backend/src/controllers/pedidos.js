@@ -5,7 +5,6 @@ export class PedidosController {
 
   create = async (req, res) => {
     const result = req.body
-    console.log({ result })
     const nuevoPedido = await this.pedidosModel.create({ input: result })
     res.status(201).json(nuevoPedido)
   }

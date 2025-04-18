@@ -2,18 +2,26 @@ import { DataTypes } from 'sequelize'
 import db from '../config/db/db.js'
 
 export class InventarioModel {
-  static Platos = db.define('Platos', {
+  static Platos = db.define('Producto', {
     nombre: {
       type: DataTypes.STRING
-    },
-    descripcion: {
-      type: DataTypes.TEXT
     },
     precio: {
       type: DataTypes.DECIMAL
     },
-    cantidad_disponible: {
-      type: DataTypes.INTEGER
+    descripcion: {
+      type: DataTypes.TEXT
+    },
+    tiempoPreparacion: {
+      type: DataTypes.TIME
+    },
+    idCategoria: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    idStock: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   })
 

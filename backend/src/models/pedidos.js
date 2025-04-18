@@ -1,14 +1,9 @@
 /* eslint-disable camelcase */
 import db from '../config/db/db.js'
-import { pedidosColumns, detallePedidosColumns, productoColums } from '../services/pedidos.js'
+import { pedidosColumns, productoColums } from '../services/pedidos.js'
 
 export class PedidosModel {
   static Pedido = db.define('Pedido', pedidosColumns, {
-    timestamps: false,
-    freezeTableName: true
-  })
-
-  static detallePedido = db.define('DetallePedido', detallePedidosColumns, {
     timestamps: false,
     freezeTableName: true
   })
@@ -38,6 +33,7 @@ export class PedidosModel {
       Reserva,
       Productos
     } = input
+
     try {
       const nuevoPedido = await this.Pedido.create({
         ClienteID,
@@ -56,7 +52,6 @@ export class PedidosModel {
           }
         })
       }
-      console.log(nuevoPedido.ID)
       const resultado = await this.Pedido.findByPk(nuevoPedido.ID, {
         include: this.Producto,
         through: {

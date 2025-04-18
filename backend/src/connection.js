@@ -5,6 +5,7 @@ export const dbConnect = async () => {
     await db.authenticate()
     console.log('base de datos en linea')
   } catch (error) {
+    console.error('❌ Error de conexión:', error.original)
     throw new Error('error al levantar la base de datos', error)
   }
 }
